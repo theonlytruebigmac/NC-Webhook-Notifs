@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  nc_receiver:
+    container_name: nc_receiver
+    image: registry.syschimp.com/osintnugget/nc_xml_receiver:latest
+    ports:
+      - 5056:5055
+    environment:
+      - DISCORD_WEBHOOK_URL=your_discord_webhook_url
+      - TEAMS_WEBHOOK_URL=your_teams_webhook_url
+    restart: unless-stopped
+    networks:
+      nc_receiver:
+        driver: bridge
+
+networks:
+  nc_receiver:
+    name: nc_receiver
